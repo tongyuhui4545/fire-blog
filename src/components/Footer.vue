@@ -2,35 +2,31 @@
   <footer>
     <div class="container">
       <div class="left">
-        <router-link class="header" :to="{ name: 'home' }">
-          FireBlogs
-        </router-link>
-        <ul>
-          <li>
-            <a href="#"><youTube class="svg-icon" /></a>
-          </li>
-          <li>
-            <a href="#"><twitter class="svg-icon" /></a>
-          </li>
-          <li>
-            <a href="#"><instagram class="svg-icon" /></a>
-          </li>
-          <li>
-            <a href="#"><linkedin class="svg-icon" /></a>
-          </li>
-        </ul>
-      </div>
-      <div class="col-2">
-        <ul>
-          <router-link class="link" :to="{ name: 'home' }">Home</router-link>
-          <router-link class="link" :to="{ name: 'blogs' }">Blogs</router-link>
-          <router-link class="link" :to="{ name: 'newpost' }"
-            >Create Posts</router-link
-          >
-          <router-link class="link" :to="{ name: 'login' }"
-            >SignUp/LogIn</router-link
-          >
-        </ul>
+        <div class="col-1">
+          <router-link class="header" :to="{ name: 'Home' }">FireBlogs</router-link>
+          <ul>
+            <li>
+              <a href="#"><youTube class="svg-icon"/></a>
+            </li>
+            <li>
+              <a href="#"><twitter class="svg-icon"/></a>
+            </li>
+            <li>
+              <a href="#"><instagram class="svg-icon"/></a>
+            </li>
+            <li>
+              <a href="#"><linkedin class="svg-icon"/></a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-2">
+          <ul>
+            <router-link class="link" :to="{ name: 'Home' }">Home</router-link>
+            <router-link class="link" :to="{ name: 'Blogs' }">Blogs</router-link>
+            <router-link v-if="admin" class="link" :to="{ name: 'CreatePost' }">Create Post</router-link>
+            <router-link v-if="!user" class="link" :to="{ name: 'Login' }">Login In / Register</router-link>
+          </ul>
+        </div>
       </div>
       <div class="right">
         <p>Copyright 2021 All Rights Reserved</p>
@@ -45,13 +41,20 @@ import twitter from "../assets/Icons/twitter-brands.svg";
 import instagram from "../assets/Icons/instagram-brands.svg";
 import linkedin from "../assets/Icons/linkedin-brands.svg";
 export default {
-    name: "footer-vue",
-    components: {
-        youTube,
-        twitter,
-        instagram,
-        linkedin
-    }
+  components: {
+    youTube,
+    twitter,
+    instagram,
+    linkedin,
+  },
+  computed: {
+    user() {
+      return this.$store.state.user;
+    },
+    admin() {
+      return this.$store.state.profileAdmin;
+    },
+  },
 };
 </script>
 
@@ -68,10 +71,12 @@ footer {
       flex-direction: row;
       gap: 0px;
     }
+
     > div {
       display: flex;
       flex: 1;
     }
+
     .left {
       gap: 32px;
       color: #fff;
@@ -83,6 +88,7 @@ footer {
         align-items: initial;
         gap: 0;
       }
+
       .header {
         text-align: center;
         font-size: 24px;
@@ -99,6 +105,7 @@ footer {
         list-style: none;
         display: flex;
       }
+
       .col-1,
       .col-2 {
         gap: 32px;
@@ -108,8 +115,10 @@ footer {
           gap: 0;
         }
       }
+
       .col-1 {
         flex-direction: column;
+
         h2 {
           text-align: center;
           @media (min-width: 800px) {
@@ -118,6 +127,7 @@ footer {
         }
         ul {
           margin-top: auto;
+
           li {
             display: flex;
             align-items: center;
@@ -129,6 +139,7 @@ footer {
           }
         }
       }
+
       .col-2 {
         ul {
           height: 100%;
@@ -147,6 +158,7 @@ footer {
         }
       }
     }
+
     .right {
       gap: 32px;
       color: #fff;
@@ -157,6 +169,7 @@ footer {
         gap: 0;
       }
     }
+
     p {
       margin-top: auto;
     }

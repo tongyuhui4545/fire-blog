@@ -15,7 +15,7 @@
         </ul>
       </div>
     </nav>
-    <menuIcon v-show="mobile" class="menu-icon" @click="toggleMobileNav"/>
+    <menuIcon v-show="mobile" class="menu-icon" @click="toggleMobileNav" />
     <transition name="mobile-nav">
       <ul class="mobile-nav" v-show="mobileNav">
         <router-link class="link" to="#"> Home </router-link>
@@ -28,12 +28,12 @@
 </template>
 
 <script>
-import menuIcon from '../assets/Icons/bars-regular.svg';
+import menuIcon from "../assets/Icons/bars-regular.svg";
 
 export default {
   name: "navigation",
   components: {
-    menuIcon
+    menuIcon,
   },
   data() {
     return {
@@ -43,24 +43,24 @@ export default {
     };
   },
   created() {
-   window.addEventListener('resize', this.checkScreen);
-   this.checkScreen();
+    window.addEventListener("resize", this.checkScreen);
+    this.checkScreen();
   },
   methods: {
     checkScreen() {
       this.windowWidth = window.innerWidth;
-      if(this.windowWidth <= 750) {
+      if (this.windowWidth <= 750) {
         this.mobile = true;
-        return
+        return;
       }
       this.mobile = false;
       this.mobileNav = false;
-      return
+      return;
     },
-  
-  toggleMobileNav () {
-    this.mobileNav = !this.mobileNav;
-  }
+
+    toggleMobileNav() {
+      this.mobileNav = !this.mobileNav;
+    },
   },
 };
 </script>
@@ -100,23 +100,23 @@ header {
     }
 
     .nav-links {
-        position: relative;
-        display: flex;
-        flex: 1;
-        align-items: center;
-        justify-content: flex-end;
+      position: relative;
+      display: flex;
+      flex: 1;
+      align-items: center;
+      justify-content: flex-end;
 
-        ul {
-            margin-right: 32px;
+      ul {
+        margin-right: 32px;
 
-            .link {
-                margin-right: 32px;
-            }
-
-            .link:last-child {
-                margin-right: 0
-            }
+        .link {
+          margin-right: 32px;
         }
+
+        .link:last-child {
+          margin-right: 0;
+        }
+      }
     }
   }
 
@@ -143,7 +143,7 @@ header {
 
     .link {
       padding: 15px 0;
-      color: #fff
+      color: #fff;
     }
   }
 
@@ -159,7 +159,7 @@ header {
   .mobile-nav-enter-to {
     transform: translate(0);
   }
-  
+
   .mobile-nav-leave-to {
     transform: translate(-250px);
   }
